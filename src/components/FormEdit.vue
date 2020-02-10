@@ -5,22 +5,6 @@
         <label
           class="block text-gray-600 font-bold md:text-right mb-1 md:mb-0 pr-4"
           for="inline-full-name"
-        >Author</label>
-      </div>
-      <div class="md:w-3/4">
-        <input
-          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-          id="inline-full-name"
-          type="text"
-          v-model="article.author"
-        />
-      </div>
-    </div>
-    <div class="md:flex md:items-center mb-6">
-      <div class="md:w-1/4">
-        <label
-          class="block text-gray-600 font-bold md:text-right mb-1 md:mb-0 pr-4"
-          for="inline-full-name"
         >Title</label>
       </div>
       <div class="md:w-3/4">
@@ -28,7 +12,7 @@
           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
           id="inline-full-name"
           type="text"
-          v-model="article.title"
+          v-model="title"
         />
       </div>
     </div>
@@ -44,7 +28,7 @@
           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
           cols="30"
           rows="10"
-          v-model="article.content"
+          v-model="content"
         ></textarea>
       </div>
     </div>
@@ -62,19 +46,34 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      article: {
-        author: 'John Doe',
-        title: 'The Funky Javanese',
-        content: 'Anda jamet,  Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet, Anda jamet'
-      }
-    }
+      endpoint: "/api/v1/articles/",
+      id: this.$route.params["id"],
+      title: "",
+      content: ""
+    };
+  },
+  created() {
+    this.fetchArticle();
   },
   methods: {
-    editArticle: function() {
-      console.log("test");
+    async fetchArticle() {
+      let response = await axios.get(this.endpoint + this.id);
+
+      this.title = response.data.title;
+      this.content = response.data.content;
+    },
+    async editArticle() {
+      console.log(this.endpoint + this.id);
+      let response = await axios.put(this.endpoint + this.id + '/', {
+        title: this.title,
+        content: this.content
+      });
+
+      this.$router.push(`/post/${this.id}`);
     }
   }
 };
