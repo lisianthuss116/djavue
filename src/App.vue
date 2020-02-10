@@ -27,7 +27,7 @@
       <div class="bottom p-3 mb-12 bg-teal-100 shadow-md">
         <div class="container mx-auto">
           <div class="flex justify-around items-baseline text-gray-500">
-            <a href="#" class="text-sm text-teal-800 font-thin">HOME</a>
+            <router-link to="/" class="text-sm text-teal-800 font-thin">HOME</router-link>
             <a href="#" class="text-sm text-teal-800 font-thin">CATEGORY</a>
             <a href="#" class="text-sm text-teal-800 font-thin">TRENDING</a>
             <a href="#" class="text-sm text-teal-800 font-thin">SUBSCRIPTION</a>

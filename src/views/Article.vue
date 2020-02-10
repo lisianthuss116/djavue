@@ -1,5 +1,5 @@
 <template>
-  <div class="home container mx-auto md:px-32 lg:px-48">
+  <div class="home container mx-auto md:px-32 lg:px-40">
     <div class="flex flex-wrap justify-center">
       <div class="w-full p-6 m-6" :class="grid">
         <h1 class="text-4xl font-bold">{{ article.title }}</h1>
@@ -14,10 +14,12 @@
 <script>
 import axios from "axios";
 import Post from "@/components/Post";
+import Alert from "@/components/Alert";
 
 export default {
   name: "Article",
   components: {
+    Alert,
     Post
   },
   data() {

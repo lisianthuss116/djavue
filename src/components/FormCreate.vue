@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div v-if="submitted">
+      <Alert
+        bgcolor="green-200"
+        border="border"
+        bordercolor="green-300"
+        color="green-700"
+      >Successfully posted a new post.</Alert>
+    </div>
     <form class="w-3/4 mt-8" @submit.prevent="addArticle">
       <div class="md:flex md:items-center mb-6">
         <div class="md:w-1/4">
@@ -44,16 +52,17 @@
         </div>
       </div>
     </form>
-    <div v-if="submitted">
-      <h3>Submitted</h3>
-    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Alert from "./Alert";
 
 export default {
+  components: {
+    Alert
+  },
   data() {
     return {
       submitted: false,
@@ -64,22 +73,17 @@ export default {
   },
   methods: {
     async addArticle() {
-      let response = await axios
-        .post(this.endpoint, {
-            title: this.title,
-            content: this.content,
-            user: Math.random()
-              .toString(36)
-              .replace(/[^a-z]+/g, "")
-              .substr(0, 5)
-          }
-        )
-        .then(data => {
-          console.log(data);
-          this.submitted = true;
-        });
+      let response = await axios.post(this.endpoint, {
+        title: this.title,
+        content: this.content,
+        user: Math.random()
+          .toString(36)
+          .replace(/[^a-z]+/g, "")
+          .substr(0, 5)
+      });
 
-      this.$route.push("/");
+      this.$emit("success");
+      this.$router.push("/");
     }
   }
 };
