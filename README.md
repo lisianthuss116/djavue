@@ -6,7 +6,7 @@
 [![DjaVue](https://circleci.com/gh/HotPotatoC/djavue.svg?style=shield)](https://circleci.com/gh/HotPotatoC/djavue)
 [![DjaVue](https://circleci.com/gh/HotPotatoC/djavue.svg?style=svg)](https://circleci.com/gh/HotPotatoC/djavue)
 
-A blog made with Django, VueJS and postgresql
+A blog made with Django, VueJS and PostgreSQL
 
 ## Table Of Content
 
