@@ -15,21 +15,30 @@ A blog made with Django, VueJS and postgresql
 
 ## Getting Started
 
-Clone the repository
+**Clone the repository**
 
 ```
 $ git clone https://github.com/HotPotatoC/djavue.git
 $ cd djavue
 ```
 
-Install the dependencies
+**Installing the dependencies**
+
+Using virtual environments
 
 ```
-$ python -m pip install -r requirements.txt
+$ python -m venv venv
+$ source env/Scripts/activate
+```
+
+Installing
+
+```
+$ pip install -r requirements.txt
 $ npm install
 ```
 
-Run the services
+**Run the services**
 
 ```
 $ ./runserver
@@ -40,20 +49,23 @@ Then head to `http://localhost:8080/` to see your web application running.
 
 ## Project Structure
 
+Routes
 | Route | Content |
-| ------------- | ------------- |
+| --------- | ------------------------------ |
 | / | View Articles |
 | /post/:id | View an Article post by the id |
 | /create | Add a new post |
 | /edit/:id | Edit a post |
 
-API
+API Endpoints
 
-| Method | Route | Content |
-| ------------- | ------------- | ------------- |
-| GET | /api/v1/articles/ | View Articles |
-| GET | /api/v1/articles/:id | View an Article by the id |
-| POST | /api/v1/articles/ | Add a new Article |
+| Method | Route                | Content                    |
+| ------ | -------------------- | -------------------------- |
+| GET    | /api/v1/articles/    | View Articles              |
+| GET    | /api/v1/articles/:id | View an Article by the id  |
+| POST   | /api/v1/articles/    | Add a new Article          |
+| PUT    | /api/v1/articles/:id | Update an existing Article |
+| DELETE | /api/v1/articles/:id | Delete an existing Article |
 
 ## Contributing
 

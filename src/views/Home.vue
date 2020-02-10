@@ -1,7 +1,14 @@
 <template>
   <div class="home container mx-auto">
-    <h1 class="text-5xl font-bold">Blog</h1>
     <div class="flex flex-wrap">
+      <Alert
+        bg-color="green-200"
+        border="border"
+        border-color="green-300"
+        color="green-700"
+        v-show="alert"
+        @success="alert = true"
+      >Successfully posted a new post.</Alert>
       <Post :article="article" v-for="article in articles" :key="article.id" />
     </div>
   </div>
@@ -9,15 +16,18 @@
 
 <script>
 import axios from "axios";
+import Alert from "@/components/Alert";
 import Post from "@/components/Post";
 
 export default {
   name: "home",
   components: {
+    Alert,
     Post
   },
   data() {
     return {
+      alert: false,
       endpoint: "/api/v1/articles/",
       articles: null
     };
@@ -27,9 +37,13 @@ export default {
   },
   methods: {
     async fetchArticles() {
-      let { data } = await axios.get(this.endpoint);
+      try {
+        let { data } = await axios.get(this.endpoint);
 
-      this.articles = data;
+        this.articles = data;
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };

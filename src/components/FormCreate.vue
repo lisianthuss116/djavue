@@ -1,53 +1,89 @@
 <template>
-  <form class="w-3/4 mt-8" @submit.prevent="addArticle">
-    <div class="md:flex md:items-center mb-6">
-      <div class="md:w-1/4">
-        <label
-          class="block text-gray-600 font-bold md:text-right mb-1 md:mb-0 pr-4"
-          for="inline-full-name"
-        >Title</label>
-      </div>
-      <div class="md:w-3/4">
-        <input
-          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-          id="inline-full-name"
-          type="text"
-        />
-      </div>
+  <div>
+    <div v-if="submitted">
+      <Alert
+        bgcolor="green-200"
+        border="border"
+        bordercolor="green-300"
+        color="green-700"
+      >Successfully posted a new post.</Alert>
     </div>
-    <div class="md:flex md:items-center mb-6">
-      <div class="md:w-1/4">
-        <label
-          class="block text-gray-600 font-bold md:text-right mb-1 md:mb-0 pr-4"
-          for="inline-username"
-        >Content</label>
+    <form class="w-3/4 mt-8" @submit.prevent="addArticle">
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/4">
+          <label
+            class="block text-gray-600 font-bold md:text-right mb-1 md:mb-0 pr-4"
+            for="inline-full-name"
+          >Title</label>
+        </div>
+        <div class="md:w-3/4">
+          <input
+            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+            id="inline-full-name"
+            v-model.lazy="title"
+            type="text"
+          />
+        </div>
       </div>
-      <div class="md:w-3/4">
-        <textarea
-          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-          cols="30"
-          rows="10"
-        ></textarea>
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/4">
+          <label
+            class="block text-gray-600 font-bold md:text-right mb-1 md:mb-0 pr-4"
+            for="inline-username"
+          >Content</label>
+        </div>
+        <div class="md:w-3/4">
+          <textarea
+            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+            cols="30"
+            rows="10"
+            v-model.lazy="content"
+          ></textarea>
+        </div>
       </div>
-    </div>
-    <div class="md:flex md:items-center">
-      <div class="md:w-1/3"></div>
-      <div class="md:w-full">
-        <button
-          name="submit"
-          class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >Submit</button>
+      <div class="md:flex md:items-center">
+        <div class="md:w-1/3"></div>
+        <div class="md:w-full">
+          <button
+            name="submit"
+            class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >Submit</button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+import Alert from "./Alert";
+
 export default {
+  components: {
+    Alert
+  },
+  data() {
+    return {
+      submitted: false,
+      title: "",
+      content: "",
+      endpoint: "/api/v1/articles/"
+    };
+  },
   methods: {
-    addArticle: function() {
-      console.log("check");
+    async addArticle() {
+      let response = await axios.post(this.endpoint, {
+        title: this.title,
+        content: this.content,
+        user: Math.random()
+          .toString(36)
+          .replace(/[^a-z]+/g, "")
+          .substr(0, 5)
+      });
+
+      this.$emit("success");
+      this.$router.push("/");
     }
   }
 };
