@@ -2,9 +2,9 @@
   <div class="home container mx-auto">
     <div class="flex flex-wrap">
       <Alert
-        bgcolor="green-200"
+        bg-color="green-200"
         border="border"
-        bordercolor="green-300"
+        border-color="green-300"
         color="green-700"
         v-show="alert"
         @success="alert = true"

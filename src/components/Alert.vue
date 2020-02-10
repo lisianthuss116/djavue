@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`bg-${bgcolor} ${border} border-${bordercolor} text-${color}`"
+    :class="`bg-${bgColor} ${border} border-${borderColor} text-${color}`"
     class="px-4 py-3 rounded relative"
     role="alert"
   >
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ["title", "bgcolor", "border", "bordercolor", "color"]
+  props: ["title", "bgColor", "border", "borderColor", "color"]
 };
 </script>
 
