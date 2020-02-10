@@ -61,14 +61,13 @@ export default {
   },
   methods: {
     async fetchArticle() {
-      let response = await axios.get(this.endpoint + this.id);
+      let { data } = await axios.get(this.endpoint + this.id);
 
-      this.title = response.data.title;
-      this.content = response.data.content;
+      this.title = data.title;
+      this.content = data.content;
     },
     async editArticle() {
-      console.log(this.endpoint + this.id);
-      let response = await axios.put(this.endpoint + this.id + '/', {
+      let response = await axios.put(this.endpoint + this.id + "/", {
         title: this.title,
         content: this.content
       });
