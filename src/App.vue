@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <div class="upper p-5 bg-white shadow-md">
+      <div class="upper relative p-5 bg-white">
         <div class="container mx-auto">
           <div class="flex justify-between items-baseline">
             <h1 class="text-2xl font-bold">
@@ -17,14 +17,14 @@
               <a href="#" class="px-2 mr-5">
                 <img src="@/assets/icons/bell.svg" alt />
               </a>
-              <button class="px-4 py-1 bg-transparent border-2 border-teal-400 text-teal-400 rounded focus:outline-none">
-                Upgrade
-              </button>
+              <button
+                class="px-4 py-1 bg-transparent border-2 border-teal-400 text-teal-400 rounded focus:outline-none"
+              >Upgrade</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="bottom p-3 mb-12 bg-teal-100 shadow-md">
+      <div class="bottom relative p-3 mb-12 bg-teal-100">
         <div class="container mx-auto">
           <div class="flex justify-around items-baseline text-gray-500">
             <router-link to="/" class="text-sm text-teal-800 font-thin">HOME</router-link>
@@ -42,7 +42,7 @@
 
 <style lang="scss">
 body {
-  background: #f5f5f5;
+  background: #f7fafc;
 }
 
 #app {
@@ -54,6 +54,15 @@ body {
 #nav {
   .brand {
     font-family: "Gilroy", sans-serif;
+  }
+  .upper {
+    z-index: 2;
+  }
+  .bottom {
+    z-index: 1;
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(129, 230, 217, 0.36);
+    -moz-box-shadow: 0px 3px 10px 0px rgba(129, 230, 217, 0.36);
+    box-shadow: 0px 3px 10px 0px rgba(129, 230, 217, 0.36);
   }
 }
 </style>

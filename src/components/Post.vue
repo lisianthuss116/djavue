@@ -1,5 +1,8 @@
 <template>
-  <div :class="grid" class="w-full md:w-1/2 p-6 m-2 mb-8 bg-white shadow-md rounded-lg">
+  <div
+    :class="grid"
+    class="article_post w-full md:w-1/2 p-6 m-2 mb-8 bg-white rounded-lg"
+  >
     <h1 class="text-4xl font-bold">
       <router-link :to="'/post/' + article.id">{{ article.title }}</router-link>
     </h1>
@@ -61,6 +64,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.article_post {
+  -webkit-box-shadow: 0px 0px 18px 0px rgba(49, 151, 149, 0.19);
+  -moz-box-shadow: 0px 0px 18px 0px rgba(49, 151, 149, 0.19);
+  box-shadow: 0px 0px 18px 0px rgba(49, 151, 149, 0.19);
+}
 .bookmark-btn {
   transition: 0.35s;
 }
