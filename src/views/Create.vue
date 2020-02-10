@@ -9,12 +9,18 @@
 </template>
 
 <script>
-import FormCreateVue from '../components/FormCreate.vue'
+import FormCreateVue from '../components/FormCreate.vue';
+import axios from 'axios';
 
 export default {
     name: "create",
     components: {
         "form-app": FormCreateVue
+    },
+    data() {
+        return {
+            
+        }
     }
 }
 </script>
