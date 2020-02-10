@@ -60,9 +60,9 @@ body {
   }
   .bottom {
     z-index: 1;
-    -webkit-box-shadow: 0px 3px 10px 0px rgba(129, 230, 217, 0.36);
-    -moz-box-shadow: 0px 3px 10px 0px rgba(129, 230, 217, 0.36);
-    box-shadow: 0px 3px 10px 0px rgba(129, 230, 217, 0.36);
+    -webkit-box-shadow: 0px 0px 18px 0px rgba(49, 151, 149, 0.19);
+    -moz-box-shadow: 0px 0px 18px 0px rgba(49, 151, 149, 0.19);
+    box-shadow: 0px 0px 18px 0px rgba(49, 151, 149, 0.19);
   }
 }
 </style>
